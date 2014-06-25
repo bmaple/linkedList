@@ -30,18 +30,19 @@ struct ilist
     ilist(int init[], int initSize)
     {   
         head = new node(init[0]);
-        node* curNode = head->next;
+        node * curNode; 
+        curNode = head;
         for(int i = 1; i < initSize; i++)
         {
-            cout << "assigning one" << endl;
-            curNode = new node(init[i]);
+            node * temp = new node(init[i]);
+            curNode->next = temp;
             curNode = curNode->next;
         }
     }
     void print()
     {
-        node* curNode = head->next;
-        while(curNode->next != NULL)
+        node* curNode = this->head;
+        while(curNode != NULL)
         {
             cout << curNode->value << " ";
             curNode = curNode->next;
@@ -57,6 +58,8 @@ int main()
 {
     int nums[5] = {1,2,3,4,5};
     ilist lnums(nums, 5);
+    //cout << lnums.head->value << endl;
+    //cout << lnums.head->next->value << endl;
     lnums.print();
 
     return 0;
